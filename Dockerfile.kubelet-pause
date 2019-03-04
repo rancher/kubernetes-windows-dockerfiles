@@ -1,4 +1,0 @@
-ARG  PS_VERSION
-
-FROM mcr.microsoft.com/powershell:$PS_VERSION
-CMD  ["cmd", "/c", "ping", "-t", "localhost"]
