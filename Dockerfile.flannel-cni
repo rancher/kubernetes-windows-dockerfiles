@@ -7,7 +7,7 @@ RUN  [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::T
      \
      New-Item -Type Directory -Path '"C:\Program Files\containernetworking"' -ErrorAction Ignore; \
      \
-     Invoke-WebRequest -UseBasicParsing -OutFile '"C:\Program Files\containernetworking\plugins.zip"' -Uri "https://github.com/thxCode/containernetworking-plugins/releases/download/v0.1.0-rancher/binaries.zip"; \
+     Invoke-WebRequest -UseBasicParsing -OutFile '"C:\Program Files\containernetworking\plugins.zip"' -Uri "https://github.com/thxCode/containernetworking-plugins/releases/download/v0.2.0-rancher/binaries.zip"; \
      \
      Write-Host 'Expanding containernetworking/plugins binaries ...'; \
      \
@@ -17,7 +17,7 @@ RUN  [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::T
      \
      New-Item -Type Directory -Path '"C:\Program Files\coreos"' -ErrorAction Ignore; \
      \
-     Invoke-WebRequest -UseBasicParsing -OutFile '"C:\Program Files\coreos\flanneld.zip"' -Uri "https://github.com/thxCode/coreos-flannel/releases/download/v0.1.0-rancher/binaries.zip"; \
+     Invoke-WebRequest -UseBasicParsing -OutFile '"C:\Program Files\coreos\flanneld.zip"' -Uri "https://github.com/thxCode/coreos-flannel/releases/download/v0.2.0-rancher/binaries.zip"; \
      \
      Write-Host 'Expanding coreos/flannel binaries ...'; \
      \
