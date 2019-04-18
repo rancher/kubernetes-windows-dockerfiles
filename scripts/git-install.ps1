@@ -1,22 +1,25 @@
-$GIT_VERSION="2.11.1"
-$GIT_TAG="v${GIT_VERSION}.windows.1"
-$GIT_DOWNLOAD_URL="https://github.com/git-for-windows/git/releases/download/${GIT_TAG}/MinGit-${GIT_VERSION}-64-bit.zip"
-$GIT_DOWNLOAD_SHA256="668d16a799dd721ed126cc91bed49eb2c072ba1b25b50048280a4e2c5ed56e59"
+## https://chocolatey.org/packages/git.install
 
-# steps inspired by "chcolateyInstall.ps1" from "git.install" (https://chocolatey.org/packages/git.install)
+param (
+    [parameter(Mandatory = $false)] [string]$Version = "2.21.0",
+    [parameter(Mandatory = $false)] [string]$SHA256 = "bd91db55bd95eaa80687df28877e2df8c8858a0266e9c67331cfddba2735f25c"
+)
+
+$GIT_DOWNLOAD_URL="https://github.com/git-for-windows/git/releases/download/v${Version}.windows.1/MinGit-${Version}-64-bit.zip"
+
 Write-Host ('Downloading {0} ...' -f $GIT_DOWNLOAD_URL)
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Invoke-WebRequest -Uri $GIT_DOWNLOAD_URL -OutFile 'git.zip'
 
-Write-Host ('Verifying sha256 ({0}) ...' -f $GIT_DOWNLOAD_SHA256)
-if ((Get-FileHash git.zip -Algorithm sha256).Hash -ne $GIT_DOWNLOAD_SHA256) {
+Write-Host ('Verifying sha256 ({0}) ...' -f $SHA256)
+if ((Get-FileHash git.zip -Algorithm sha256).Hash -ne $SHA256) {
     Write-Host 'FAILED!'
     exit 1
 }
 
 Write-Host 'Expanding ...'
-Expand-Archive -Path git.zip -DestinationPath C:\git\.
+Expand-Archive -Force -Path git.zip -DestinationPath C:\git\.
 
 Write-Host 'Removing ...'
 Remove-Item git.zip -Force
