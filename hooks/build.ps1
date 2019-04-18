@@ -1,9 +1,9 @@
 param (
     [parameter(Mandatory = $false)] [switch]$ForceBuild = $false,
     [parameter(Mandatory = $false)] [switch]$PushAfterBuilt = $false,
-    [parameter(Mandatory = $false)] [string]$PowerShellVersion = "nanoserver-1803",
+    [parameter(Mandatory = $false)] [string]$PowerShellVersion = "nanoserver-1809",
     [parameter(Mandatory = $false)] [string]$PushImageToLibrary = "maiwj",
-    [parameter(Mandatory = $false)] [string]$PushImageWithSuffix = ""
+    [parameter(Mandatory = $false)] [string]$PushImageWithSuffix = "windows-1809"
 )
 
 $ErrorActionPreference = "Stop"
@@ -87,7 +87,7 @@ foreach ($v in $versionMap.psobject.properties) {
         if ($ForceBuild -or (-not (docker images $image_tag -q))) {
             Write-Host -ForegroundColor DarkCyan "`nBUILDING $image_tag ..."
 
-            if ($release_id -eq "1803") {
+            if ($release_id -eq "1809") {
                 if ($with_version) {
                     docker build `
                         --build-arg PS_VERSION=$PowerShellVersion `

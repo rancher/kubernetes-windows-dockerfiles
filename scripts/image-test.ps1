@@ -1,5 +1,5 @@
 param (
-    [parameter(Mandatory = $false)] [string]$PushImageWithSuffix = "nanoserver-1803",
+    [parameter(Mandatory = $false)] [string]$PushImageWithSuffix = "windows-1809",
     [parameter(Mandatory = $false)] [string]$PullImageFromLibrary = "maiwj",
     [parameter(Mandatory = $false)] [string]$TagImageToLibrary = "rancher",
     [parameter(Mandatory = $false)] [string]$VersionFileURL = "https://raw.githubusercontent.com/thxCode/kubernetes-windows-dockerfiles/master/VERSION"
