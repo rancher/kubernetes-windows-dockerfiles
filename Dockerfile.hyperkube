@@ -7,23 +7,21 @@ RUN  Write-Host 'Expanding 7z.zip ...'; \
      \
      Expand-Archive -Force -Path '"C:\Program Files\7z.zip"' -DestinationPath '"C:\Program Files\7z"'; \
      \
-     Write-Host 'Updating PATH ...'; \
-     \
-     [Environment]::SetEnvironmentVariable('Path', [Environment]::GetEnvironmentVariable('Path', 'User') + ';C:\Program Files\7z', 'User'); \
-     \
      Write-Host 'Complete.';
 ARG  VERSION
 ENV  K8S_VERSION $VERSION
 RUN  Write-Host('Downloading Kubernetes {0} windows binaries ...' -f $env:K8S_VERSION); \
-	\
+     \
      Invoke-WebRequest -UseBasicParsing -OutFile '"C:\Program Files\kubernetes.tar.gz"' -Uri "https://dl.k8s.io/$env:K8S_VERSION/kubernetes-node-windows-amd64.tar.gz"; \
      \
-	Write-Host('Expanding Kubernetes {0} windows binaries ...' -f $env:K8S_VERSION); \
-	\
-     7za.exe x '"C:\Program Files\kubernetes.tar.gz"' -o'"C:\Program Files"' -y; \
-     7za.exe x '"C:\Program Files\kubernetes.tar"' -o'"C:\Program Files"' -y; \
+     cd '"C:\Program Files\7z"'; \
      \
-	Write-Host 'Complete.';
+     Write-Host('Expanding Kubernetes {0} windows binaries ...' -f $env:K8S_VERSION); \
+     \
+     .\7za.exe x '"C:\Program Files\kubernetes.tar.gz"' -o'"C:\Program Files"' -y; \
+     .\7za.exe x '"C:\Program Files\kubernetes.tar"' -o'"C:\Program Files"' -y; \
+     \
+     Write-Host 'Complete.';
 
 FROM mcr.microsoft.com/powershell:$PS_VERSION
 ENV  RUN_PATH="C:\\Program Files\\runtime"
