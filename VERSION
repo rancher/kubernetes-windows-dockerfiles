@@ -12,8 +12,5 @@
     ],
     "flannel-cni": [
         "v0.0.1"
-    ],
-    "nginx-proxy": [
-        "v0.0.1"
     ]
 }
