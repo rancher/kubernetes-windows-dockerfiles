@@ -31,7 +31,8 @@ steps:
 
 volumes:
   - name: docker_pipe
-    path: \\\\.\\pipe\\docker_engine
+    host:
+      path: \\\\.\\pipe\\docker_engine
 ---
 kind: pipeline
 name: manifest
