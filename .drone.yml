@@ -45,10 +45,9 @@ steps:
         from_secret: docker_username
       password:
         from_secret: docker_password
-      target: "rancher/kubelet-pause:${DRONE_TAG}"
-      template: "rancher/kubelet-pause:${DRONE_TAG}-OS-ARCH"
-      platforms:
-        - windows/1809
+      tag: "${DRONE_TAG}"
+      ignore_missing: true
+      spec: manifest.tmpl
     when:
       instance:
         - drone-publish.rancher.io

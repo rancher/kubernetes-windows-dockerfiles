@@ -1,0 +1,31 @@
+image: rancher/kubelet-pause:{{{build.tag}}
+manifests:
+  -
+    image: rancher/kubelet-pause:{{build.tag}}-linux-amd64
+    platform:
+      architecture: amd64
+      os: linux
+  -
+    image: rancher/kubelet-pause:{{build.tag}}-linux-arm64
+    platform:
+      architecture: arm64
+      os: linux
+      variant: v8
+  -
+    image: rancher/kubelet-pause:{{{build.tag}}-linux-arm
+    platform:
+      architecture: arm
+      os: linux
+      variant: v7
+  -
+    image: rancher/kubelet-pause:{{build.tag}}-windows-1803
+    platform:
+      architecture: amd64
+      os: windows
+      version: 1803
+  -
+    image: rancher/kubelet-pause:{{build.tag}}-windows-1809
+    platform:
+      architecture: amd64
+      os: windows
+      version: 1809
